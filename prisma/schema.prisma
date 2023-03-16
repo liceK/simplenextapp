@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl"]
 }
 
 datasource db {
@@ -14,5 +15,5 @@ model Person {
   id        Int    @id @default(autoincrement())
   firstname String
   lastname  String
-  Age       Int
+  age       Int
 }

@@ -16,24 +16,29 @@ export default function Home({ data }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Table striped bordered hover variant="dark">
-        <tr>
-          <th>Identifiant</th>
-          <th>Prénom</th>
-          <th>Nom</th>
-          <th>Age</th>
-        </tr>
-        {
-          data.map(item => {
-            return (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.firstname}</td>
-                <td>{item.lastname}</td>
-                <td>{item.age}</td>
-              </tr>
-            );
-          })
-        }
+        <thead>
+          <tr>
+            <th>Identifiant</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            data.map(item => {
+              return (
+                <tr key={item.id}>
+                  <td>{item.id}</td>
+                  <td>{item.firstname}</td>
+                  <td>{item.lastname}</td>
+                  <td>{item.age}</td>
+                </tr>
+              );
+            })
+          }
+        </tbody>
+
 
       </Table>
 
