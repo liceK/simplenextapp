@@ -8,6 +8,8 @@ RUN npm install
 
 RUN npx prisma generate
 
+RUN npx migrate dev
+
 RUN npm run build
 
 COPY . .
