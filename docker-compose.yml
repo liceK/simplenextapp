@@ -11,6 +11,8 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - 5432:5432
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/init.sql
 
   pgadmin:
     image: dpage/pgadmin4
@@ -37,3 +39,11 @@ services:
 volumes:
   local_pgdata:
   pgadmin-data:
+
+
+networks:
+  appnet:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
