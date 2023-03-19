@@ -1,0 +1,14 @@
+apiVersion: v1
+data:
+  script.sql: "CREATE TABLE \"Person\" (\r\n    ID SERIAL PRIMARY KEY,\r\n    FIRSTNAME
+    VARCHAR(50),\r\n    LASTNAME VARCHAR(50),\r\n    AGE INT\r\n);\r\n\r\nINSERT INTO
+    \"Person\" (\r\n    FIRSTNAME,\r\n    LASTNAME,\r\n    AGE\r\n) VALUES (\r\n    'Ariana',\r\n
+    \   'Grande',\r\n    29\r\n);\r\n\r\nINSERT INTO \"Person\" (\r\n    FIRSTNAME,\r\n
+    \   LASTNAME,\r\n    AGE\r\n) VALUES (\r\n    'Love',\r\n    'Quinn',\r\n    27\r\n);"
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2023-03-19T14:04:16Z"
+  name: script.sql
+  namespace: default
+  resourceVersion: "1807"
+  uid: 54e0082c-db62-45b9-9b4f-2f139d5839f8

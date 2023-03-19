@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: D:\Downloads\kompose-windows-amd64.exe convert
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: app
+  name: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: app
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: D:\Downloads\kompose-windows-amd64.exe convert
+        kompose.version: 1.28.0 (c4137012e)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/simplenextapp-default: "true"
+        io.kompose.service: app
+    spec:
+      containers:
+        - env:
+            - name: DATABASE_URL
+              value: postgresql://postgres:postgres@postgres.default.svc.cluster.local:5432/simplenextappdb?schema=public
+          image: nnhnam/simplenextapp
+          name: app
+          ports:
+            - containerPort: 3000
+          resources: {}
+          imagePullPolicy: Always
+      initContainers:
+        - name: check-db-ready
+          image: postgres
+          command: ['sh', '-c', 
+            'until pg_isready -h postgres -p 5432; 
+            do echo waiting for database; sleep 2; done;']
+        
+      restartPolicy: Always
+status: {}
