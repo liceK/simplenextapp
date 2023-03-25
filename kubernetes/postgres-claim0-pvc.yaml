@@ -1,9 +1,9 @@
-kind: PersistentVolume
 apiVersion: v1
+kind: PersistentVolume
 metadata:
   name: postgres-pv-volume
   labels:
-    type: local
+    type: gcePersistentDisk
     app: postgres
 spec:
   storageClassName: manual
@@ -11,17 +11,16 @@ spec:
     storage: 100Mi
   accessModes:
     - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data"
+  gcePersistentDisk:
+    pdName: my-pd
+    fsType: ext4
 ---
-kind: PersistentVolumeClaim
 apiVersion: v1
+kind: PersistentVolumeClaim
 metadata:
-  creationTimestamp: null
-  labels:
-    io.kompose.service: postgres-claim0
-    app: postgres
   name: postgres-claim0
+  labels:
+    app: postgres
 spec:
   storageClassName: manual
   accessModes:
@@ -29,4 +28,3 @@ spec:
   resources:
     requests:
       storage: 100Mi
-status: {}
